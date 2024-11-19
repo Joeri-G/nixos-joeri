@@ -48,7 +48,7 @@
       "m3tam3re@m3tam3re" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages."x86_64-linux";
         extraSpecialArgs = {inherit inputs outputs;};
-        modules = [./home/m3tam3re/m3tam3re.nix];
+        modules = [./home/m3tam3re/m3-kratos.nix];
       };
     };
   };
