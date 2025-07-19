@@ -35,6 +35,7 @@
       experimental-features = "nix-command flakes";
       trusted-users = [
         "root"
+        "joeri"
         "m3tam3re"
       ]; # Set users that are allowed to use the flake command
     };

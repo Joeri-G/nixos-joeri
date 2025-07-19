@@ -43,12 +43,21 @@
         specialArgs = {inherit inputs outputs;};
         modules = [./hosts/m3-kratos];
       };
+      dev-vm = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [./hosts/dev-vm];
+      };
     };
     homeConfigurations = {
       "m3tam3re@m3tam3re" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages."x86_64-linux";
         extraSpecialArgs = {inherit inputs outputs;};
         modules = [./home/m3tam3re/m3-kratos.nix];
+      };
+      "joeri@dev-vm" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages."x86_64-linux";
+        extraSpecialArgs = {inherit inputs outputs;};
+        modules = [./home/joeri/dev-vm.nix];
       };
     };
   };
