@@ -25,6 +25,5 @@
     ];
     packages = [inputs.home-manager.packages.${pkgs.system}.default];
   };
-  home-manager.users.joeri =
-    import ../../../home/joeri/${config.networking.hostName}.nix;
+  home-manager.users.joeri = import ./home.nix;
 }
