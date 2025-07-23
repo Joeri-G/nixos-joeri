@@ -5,7 +5,10 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports = [./packages.nix];
+  imports = [
+    ./packages.nix
+    ./config.nix
+  ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = lib.mkDefault "joeri";
