@@ -1,12 +1,20 @@
 { config, pkgs, ... }:
 
 {
-    programs.hyprland = {
-        enable = true;
-    };
+  programs.hyprland = {
+      enable = true;
+      xwayland.enable = true;
+  };
 
-    environment.systemPackages = with pkgs; [
-      kitty
-      hyprpaper
-    ];
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  environment.sessionVariables.WLR_NO_HARDWARE_CURSORS = "1";
+
+
+  environment.systemPackages = with pkgs; [
+    hyprpaper
+    kitty
+    qt5.qtwayland
+    qt6.qtwayland
+    wofi
+  ];
 }
