@@ -1,10 +1,19 @@
 # Common configuration for all hosts
 {
+  pkgs,
   lib,
   inputs,
   outputs,
   ...
 }: {
+  imports = [
+    ../../users
+    inputs.home-manager.nixosModules.home-manager
+  ];
+  home-manager = {
+    useUserPackages = true;
+    extraSpecialArgs = { inherit inputs outputs; };
+  };
   nixpkgs = {
     # You can add overlays here
     overlays = [
@@ -35,12 +44,12 @@
       experimental-features = "nix-command flakes";
       trusted-users = [
         "root"
-        "m3tam3re"
+        "joeri"
       ]; # Set users that are allowed to use the flake command
     };
     gc = {
       automatic = true;
-      options = "--delete-older-than 30d";
+      options = "--delete-older-than 7d";
     };
     optimise.automatic = true;
     registry =
@@ -48,4 +57,5 @@
       ((lib.filterAttrs (_: lib.isType "flake")) inputs);
     nixPath = ["/etc/nix/path"];
   };
+  users.defaultUserShell = pkgs.fish;
 }

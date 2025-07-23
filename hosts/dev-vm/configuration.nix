@@ -9,10 +9,10 @@
 
   # Bootloader.
   boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/vda";
+  boot.loader.grub.device = "/dev/sda";
   boot.loader.grub.useOSProber = true;
 
-  networking.hostName = "m3-kratos"; # Define your hostname.
+  networking.hostName = "dev-vm"; # Define your hostname.
   # networking.wireless.enable = true; # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -23,21 +23,21 @@
   networking.networkmanager.enable = true;
 
   # Set your time zone.
-  time.timeZone = "Europe/Berlin";
+  time.timeZone = "Europe/Amsterdam";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
   i18n.extraLocaleSettings = {
-    LC_ADDRESS = "de_DE.UTF-8";
-    LC_IDENTIFICATION = "de_DE.UTF-8";
-    LC_MEASUREMENT = "de_DE.UTF-8";
-    LC_MONETARY = "de_DE.UTF-8";
-    LC_NAME = "de_DE.UTF-8";
-    LC_NUMERIC = "de_DE.UTF-8";
-    LC_PAPER = "de_DE.UTF-8";
-    LC_TELEPHONE = "de_DE.UTF-8";
-    LC_TIME = "de_DE.UTF-8";
+    LC_ADDRESS = "nl_NL.UTF-8";
+    LC_IDENTIFICATION = "nl_NL.UTF-8";
+    LC_MEASUREMENT = "nl_NL.UTF-8";
+    LC_MONETARY = "nl_NL.UTF-8";
+    LC_NAME = "nl_NL.UTF-8";
+    LC_NUMERIC = "nl_NL.UTF-8";
+    LC_PAPER = "nl_NL.UTF-8";
+    LC_TELEPHONE = "nl_NL.UTF-8";
+    LC_TIME = "nl_NL.UTF-8";
   };
 
   # Configure keymap in X11
@@ -45,24 +45,13 @@
     layout = "us";
     variant = "";
   };
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.m3tam3re = {
-    isNormalUser = true;
-    description = "m3tam3re";
-    extraGroups = ["networkmanager" "wheel"];
-    packages = with pkgs; [];
-  };
-
+  
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    #  wget
-    neovim
     git
   ];
 
@@ -79,14 +68,11 @@
   # Enable the OpenSSH daemon.
   services.openssh = {
     enable = true;
-    settings.PermitRootLogin = "no";
     allowSFTP = true;
   };
 
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-  };
+  programs.fish.enable = true;
+
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
