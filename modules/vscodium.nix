@@ -2,8 +2,12 @@
 
 {
   environment.systemPackages = with pkgs; [
-    vscodium
+    (vscode-with-extensions.override {
+      vscode = vscodium;
+      vscodeExtensions = with vscode-extensions; [
+        jnoortheen.nix-ide
+      ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+      ];
+    })
   ];
-
-  # firefox profile config here at some point
 }
