@@ -1,7 +1,7 @@
 {
   description = ''
-My NixOS config.
-- Joeri
+    My NixOS config.
+    - Joeri
   '';
 
   inputs = {

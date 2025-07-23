@@ -11,7 +11,6 @@
 
 
   environment.systemPackages = with pkgs; [
-    hyprpaper
     kitty
     gtk3
     qt5.qtwayland
