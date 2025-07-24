@@ -2,6 +2,6 @@
 
 {
   imports = [
-    ./hyprpaper.nix
+    # something soon?
   ];
 }

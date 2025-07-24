@@ -55,7 +55,7 @@
   #
   home.sessionVariables = {
     # EDITOR = "emacs";
-    KITTY_DISABLE_WAYLAND=0;
+    # KITTY_DISABLE_WAYLAND=0;
   };
 
   # Let Home Manager install and manage itself.
