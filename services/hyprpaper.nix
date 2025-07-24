@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }:
 let 
-  wallpaperDir = "${pkgs.writeText "wallpaperDir" ''../resources/wallpapers''}";
+  wallpaperDir = ../resources/wallpapers;
 in
 {
   services.hyprpaper = {
@@ -13,11 +13,23 @@ in
       preload = [
         "${wallpaperDir}/green-forest.jpg"
         "${wallpaperDir}/pink-sky.jpg"
+        "${wallpaperDir}/bridge.jpg"
+        "${wallpaperDir}/brown-forest.jpg"
+        "${wallpaperDir}/white-forest.jpg"
+        "${wallpaperDir}/black-sand.jpg"
       ];
 
       wallpaper = [
-        "${wallpaperDir}/pink-sky.jpg"
+        # ",${wallpaperDir}/pink-sky.jpg"
+        # ",${wallpaperDir}/bridge.jpg"
+        ",${wallpaperDir}/brown-forest.jpg"
+        # ",${wallpaperDir}/white-forest.jpg"
+        # ",${wallpaperDir}/green-forest.jpg"
+        # ",${wallpaperDir}/black-sand.jpg"
       ];
     };
   };
+
+  # TODO:
+  # some settings that cycle my backgrounds
 }
