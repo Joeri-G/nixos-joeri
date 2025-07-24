@@ -39,4 +39,7 @@
       warn-dirty = false;
     };
   };
+
+  systemd.user.startServices = true;
+  systemd.user.enable = true;
 }

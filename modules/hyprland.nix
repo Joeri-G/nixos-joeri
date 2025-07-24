@@ -1,11 +1,19 @@
 { config, pkgs, ... }:
-
 {
   programs.hyprland = {
-      enable = true;
-      xwayland.enable = true;
+    enable = true;
+    xwayland.enable = true;
+    # withUWSM = true;
+    # systemd.setPath.enable = true;
   };
-
+  # programs.uwsm = {
+  #   enable = true;
+  #   waylandCompositors.hyprland = {
+  #     prettyName = "Hyprland";
+  #     comment = "Hyprland compositor managed by UWSM";
+  #    binPath = "${pkgs.hyprland}/bin/hyprland";
+  #   };
+  # };
   services.displayManager.enable = true; 
   services.displayManager.cosmic-greeter = {
     enable = true;
@@ -13,6 +21,22 @@
 
   # environment.sessionVariables.NIXOS_OZONE_WL = "1";
   # environment.sessionVariables.WLR_NO_HARDWARE_CURSORS = "1";
+
+  # this service is required to force the graphical-session.target to be invoked
+  systemd.user.targets.hyprland-manager = {
+    enable = true;
+    requiredBy = [
+      "default.target"
+    ];
+    wants = [ "graphical-session.target" ];
+    after = [ "graphical-session.target" ];
+    description = "basic hyprland manager helper target";
+    # serviceConfig = {
+    #   Type = "oneshot";
+    #   ExecStart = ''/run/current-system/sw/bin/true'';
+    #   RemainAfterExit="yes";
+    # };
+  };
 
   environment.systemPackages = with pkgs; [
     kitty
