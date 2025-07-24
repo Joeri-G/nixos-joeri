@@ -2,7 +2,7 @@
 
 {
   imports = [
-    # something soon?
+    ./hyprmgr.nix
     ./hyprpaper.nix
   ];
 }
