@@ -46,12 +46,12 @@
       "joeri@dev-vm" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages."x86_64-linux";
         extraSpecialArgs = {inherit inputs outputs;};
-        modules = [./users/joeri/dev-vm.nix];
+        modules = [./home/users/joeri/dev-vm.nix];
       };
       "joeri@fossbox" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages."x86_64-linux";
         extraSpecialArgs = {inherit inputs outputs;};
-        modules = [./users/joeri/fossbox.nix];
+        modules = [./home/users/joeri/fossbox.nix];
       };
     };
   };

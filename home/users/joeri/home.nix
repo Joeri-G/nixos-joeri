@@ -6,6 +6,8 @@
 
 {
   imports = [
+
+    ../../modules
     ./packages.nix
     ./config.nix
     ../../services

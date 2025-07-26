@@ -7,7 +7,7 @@
   ...
 }: {
   imports = [
-    ../../users
+    ../../home/users
     inputs.home-manager.nixosModules.home-manager
   ];
   home-manager = {
@@ -57,5 +57,20 @@
       ((lib.filterAttrs (_: lib.isType "flake")) inputs);
     nixPath = ["/etc/nix/path"];
   };
+  
   users.defaultUserShell = pkgs.fish;
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;
+  };
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session = {
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet -r -t --cmd Hyprland";
+        user = "greeter";
+      };
+    };
+  };
+  security.pam.services.hyprlock = {};
 }

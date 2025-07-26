@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./hyprmgr.nix
     ./hyprpaper.nix
+    ./hypridle.nix
   ];
 }
