@@ -1,4 +1,7 @@
 { config, pkgs, ... }:
+let
+  mainMod = "SUPER";
+in 
 {
   home.packages = with pkgs; [
     kitty
@@ -11,6 +14,9 @@
     enable = true;
     settings = {
       source = "~/.config/hypr/temp-hyprland.conf";
+      bind = [
+        "${mainMod}, W, exec, wlogout-script"
+      ];
     };
   };
   # home.pointerCursor = {

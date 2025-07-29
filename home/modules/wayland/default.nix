@@ -5,6 +5,6 @@
     ./hyprlock.nix
     ./waybar.nix
     ./wayland.nix
-    ./waylogout.nix
+    ./wlogout.nix
   ];
 }
