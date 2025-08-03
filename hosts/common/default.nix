@@ -46,6 +46,7 @@
         "root"
         "joeri"
       ]; # Set users that are allowed to use the flake command
+      auto-optimise-store = true;
     };
     gc = {
       automatic = true;
