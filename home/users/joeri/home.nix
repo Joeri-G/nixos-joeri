@@ -62,7 +62,7 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-
+/*
   xdg.enable = true;
   xdg.portal = {
     enable = true;
@@ -95,4 +95,5 @@
     XDG_SESSION_TYPE = "wayland";
     XDG_SESSION_DESKTOP = "Hyprland";
   };
+*/
 }

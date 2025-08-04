@@ -5,5 +5,7 @@
     neofetch
     signal-desktop
     wget
+    bottom # terminal resource monitor
+    hyprshot
   ];
 }
