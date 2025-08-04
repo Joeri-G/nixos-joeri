@@ -62,4 +62,37 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
+  xdg.enable = true;
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gnome
+      xdg-desktop-portal-gtk
+      xdg-desktop-portal-hyprland
+      xdg-desktop-portal-wlr
+    ];
+    configPackages = with pkgs; [
+      xdg-desktop-portal-gnome
+      xdg-desktop-portal-gtk
+      xdg-desktop-portal-hyprland
+      xdg-desktop-portal-wlr
+    ];
+    config = {
+      preferred = {
+
+      };
+      common = {
+        default = [ "gnome" "hyprland" "gtk" ];
+        "org.freedesktop.impl.portal.Settings" = "darkman";
+      };
+    };
+  };
+  home.sessionVariables = {
+    XCURSOR_SIZE = 15;
+    HYPRCURSOR_SIZE = 15;
+    XDG_CURRENT_DESKTOP = "Hyprland";
+    XDG_SESSION_TYPE = "wayland";
+    XDG_SESSION_DESKTOP = "Hyprland";
+  };
 }

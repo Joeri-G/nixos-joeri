@@ -27,8 +27,15 @@
     profiles.default = {
       # Search config
       search = {
-        default = "ddg";
+        default = "ddgnjs";
         engines = {
+          ddg-no-js = {
+            definedAliases = [ "@ddgnjs" ];
+            description = "Search DuckDuckGo without JS";
+            iconMapObj."16" = "https://duckduckgo.com/favicon.ico";
+            name = "DuckDuckGo No JS";
+            urls = [{ template = "https://html.duckduckgo.com/html/?q={searchTerms}"; }];
+          };
           nix-packages = {
             definedAliases = [ "@np" ];
             description = "Search in NixOS Packages";
