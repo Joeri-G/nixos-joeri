@@ -1,8 +1,9 @@
 { pkgs, ... }:
 
 {
-    home.packages = with pkgs; [
-        neofetch
-        signal-desktop
-    ];
+  home.packages = with pkgs; [
+    neofetch
+    signal-desktop
+    wget
+  ];
 }

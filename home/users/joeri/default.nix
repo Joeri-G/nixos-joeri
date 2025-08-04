@@ -3,7 +3,9 @@
   pkgs,
   inputs,
   ...
-}: {
+}:
+
+{
   users.users.joeri = {
     initialHashedPassword = "$y$j9T$4RXTEuYH/1WwVZ9xBMfAz/$LP8O9TOUTV1KCG8lxsAu0jIWVcllZ85zskZdXaFi3DD";
     isNormalUser = true;
