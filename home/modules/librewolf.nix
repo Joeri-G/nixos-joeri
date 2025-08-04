@@ -13,6 +13,9 @@
       "browser.urlbar.suggest.engines" = false;
       "browser.urlbar.suggest.openpage" = false;
       "browser.urlbar.suggest.topsites" = false;
+      "browser.toolbars.bookmarks.visibility" = "newtab";
+      "browser.compactmode.show" = true;
+      "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
 
       # "network.http.referer.XOriginPolicy" = 2;
 
@@ -25,6 +28,116 @@
       # "pdfjs.defaultZoomValue" = 100;
     };
     profiles.default = {
+      # CSS To make the top bar smaller
+      # Based on: https://github.com/Zyox-zSys/SlimBarsFirefox
+      userChrome = ''
+
+
+
+
+
+
+
+
+
+
+
+
+
+ /* Source file https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/linux_gtk_window_control_patch.css made available under Mozilla Public License v. 2.0
+See the above repository for updates as well as full license text. */
+
+/* Overrides the appearance of the window controls with something that more closely matches "normal" buttons*/
+/* More importantly, this makes window controls to respect layout rules the other styles rely on */
+
+.titlebar-buttonbox{
+  align-items: stretch !important;
+}
+.titlebar-button {
+  -moz-appearance: none !important;
+  -moz-context-properties: fill, stroke, fill-opacity;
+  fill: currentColor;
+  padding: 4px 6px !important;
+  flex-grow: 1;
+  overflow: clip;
+}
+.titlebar-button:hover{ background-color: rgba(0,0,0,0.1) }
+.titlebar-min{ list-style-image: url(chrome://browser/skin/zoom-out.svg); }
+.titlebar-close{
+  list-style-image: url(chrome://global/skin/icons/close.svg);
+  fill-opacity: 0;
+  stroke: currentColor
+}
+
+
+
+
+
+
+/* Source file https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/navbar_below_content.css made available under Mozilla Public License v. 2.0
+See the above repository for updates as well as full license text. */
+
+/* Moves the main toolbar (#nav-bar) to the bottom of the window */
+
+@-moz-document url(chrome://browser/content/browser.xhtml){
+
+  :root:not([inFullscreen]){
+    --uc-bottom-toolbar-height: calc(39px + var(--toolbarbutton-outer-padding) )
+  }
+
+  :root[uidensity="compact"]:not([inFullscreen]){
+    --uc-bottom-toolbar-height: calc(32px + var(--toolbarbutton-outer-padding) )
+  }
+
+  #browser,
+  #customization-container{ margin-bottom: var(--uc-bottom-toolbar-height,0px) }
+
+  #nav-bar{
+    position: fixed !important;
+    bottom: 0px;
+    /* For some reason -webkit-box behaves internally like -moz-box, but can be used with fixed position. display: flex would work too but it breaks extension menus. */
+    display: -webkit-box;
+    width: 100%;
+    z-index: 1;
+  }
+  #nav-bar-customization-target{ -webkit-box-flex: 1; }
+  
+  :root[lwtheme] #nav-bar{
+    background-image: linear-gradient(var(--toolbar-bgcolor),var(--toolbar-bgcolor)), var(--lwt-additional-images,var(--toolbar-bgimage)) !important;
+    background-position: top,var(--lwt-background-alignment);
+    background-repeat: repeat,var(--lwt-background-tiling);
+  }
+  :root[lwtheme-image] #nav-bar{
+    background-image: linear-gradient(var(--toolbar-bgcolor),var(--toolbar-bgcolor)),var(--lwt-header-image), var(--lwt-additional-images,var(--toolbar-bgimage)) !important;
+  }
+
+  /* Fix panels sizing */
+  .panel-viewstack{ max-height: unset !important; }
+
+  #urlbar[breakout][breakout-extend]{
+    display: flex !important;
+    flex-direction: column-reverse !important;
+    bottom: 0px !important; /* Change to 3-5 px if using compact_urlbar_megabar.css depending on toolbar density */
+    top: auto !important;
+  }
+
+  .urlbarView-body-inner{ border-top-style: none !important; }
+  
+  @media (-moz-platform: linux){
+    #notification-popup[side="top"]{
+      margin-top: calc(-2 * var(--panel-padding-block) - 40px - 32px - 8.5em) !important;
+    }
+    #permission-popup[side="top"]{
+      margin-top: calc(-2 * var(--panel-padding-block) - 2.5em);
+    }
+  }
+}
+
+/* custom */
+#urlbar-searchmode-switcher {
+  position: initial! important;
+}
+        '';
       # Search config
       search = {
         default = "ddgnjs";
@@ -74,7 +187,7 @@
       };
     };
     policies = {
-      BlockAboutConfig = true;
+      BlockAboutConfig = false;
       DisableTelemetry = true;
       DefaultDownloadDirectory = "\${home}/Downloads";
       # Extension list
