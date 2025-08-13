@@ -14,7 +14,9 @@ in
   wayland.windowManager.hyprland = {
     enable = true;
     settings = {
-      source = "~/.config/hypr/temp-hyprland.conf";
+      source = [
+        "~/.config/hypr/temp-hyprland.conf"
+      ];
       bind = [
         "${mainMod}, W, exec, wlogout-script"
       ];
