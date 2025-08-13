@@ -9,6 +9,7 @@ in
     qt5.qtwayland
     qt6.qtwayland
     rofi
+    brightnessctl
   ];
   wayland.windowManager.hyprland = {
     enable = true;
