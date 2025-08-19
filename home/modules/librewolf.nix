@@ -263,6 +263,7 @@
           (extension "iamge-search-options" "{4a313247-8330-4a81-948e-b79936516f78}")
           (extension "leechblock-ng" "leechblockng@proginosko.com")
           (extension "noscript" "{73a6fe31-595d-460b-a920-fcc0f8843232}")
+          (extension "proton-pass" "78272b6fa58f4a1abaac99321d503a20@proton.me")
         ];
         # To add additional extensions, find it on addons.mozilla.org, find
         # the short ID in the url (like https://addons.mozilla.org/en-US/firefox/addon/!SHORT_ID!/)
