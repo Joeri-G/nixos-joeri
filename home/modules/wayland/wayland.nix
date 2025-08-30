@@ -8,8 +8,9 @@ in
     gtk3
     qt5.qtwayland
     qt6.qtwayland
-    rofi
+    rofi  # program launcher
     brightnessctl
+    hyprshot # screensho
   ];
   wayland.windowManager.hyprland = {
     enable = true;

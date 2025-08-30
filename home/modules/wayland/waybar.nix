@@ -20,7 +20,7 @@
           # "Hyprland"
         ];
         modules-center = [
-          "clock"
+          "hyprland/workspaces"
         ];
         modules-right = [
           # "Sndio"
@@ -29,6 +29,7 @@
           "sndio"
           "user"
           "custom/wlogout"
+          "clock"
           # "upower"
         ];
         # modules
@@ -61,7 +62,57 @@
           on-click = "wlogout-script";
           format = "wlogout";
         };
+        "hyprland/workspaces" = {
+            active-only = false;
+            disable-scroll = false;
+            format = "{icon}";
+            on-click = "activate";
+            format-icons = {
+              "1" = "1";
+              "2" = "2";
+              "3" = "3";
+              "4" = "4";
+              "5" = "5";
+              urgent = "!";
+              default = "*";
+              sort-by-number = true;
+            };
+
+            persistent-workspaces = {
+              "1" = [ ];
+              "2" = [ ];
+              "3" = [ ];
+              "4" = [ ];
+              "5" = [ ];
+            };
+          };
       };
     };
+    style = ''
+        #workspaces {
+          margin: 4px 7px 4px 7px;
+          border-radius: 8px;
+          border-width: 2px;
+          border-color: rgba(80, 73, 69, 0.5);
+          border-style: solid;
+          background-color:  rgba(102, 92, 84, 0.5);
+        }
+
+        #workspaces button {
+          border: none;
+          padding: 1px 2px 1px 2px;
+          border-radius: 5px;
+        }
+
+        #workspaces button.active { 	
+          background-color: rgba(131, 165, 152, 0.5);
+          box-shadow: none;
+          border: none;
+        }
+
+        #workspaces button:hover {
+          background-color: rgba(189, 174, 147, 0.5);
+        }
+    '';
   };
 }

@@ -10,5 +10,6 @@ in {
     ".config/hypr/devices.conf".source = "${configDir}/hypr/devices.conf";
     ".config/hypr/monitors.conf".source = "${configDir}/hypr/monitors.conf";
     ".config/hypr/windows.conf".source = "${configDir}/hypr/windows.conf";
+    ".config/hypr/workspaces.conf".source = "${configDir}/hypr/workspaces.conf";
   };
 }

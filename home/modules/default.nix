@@ -8,5 +8,6 @@
     ./thunderbird.nix
     ./vscodium.nix
     ./wayland
+    # ./music.nix
   ];
 }
