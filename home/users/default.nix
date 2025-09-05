@@ -1,3 +1,5 @@
 {
-  imports = [./joeri];
+  imports = [
+    ./joeri
+  ];
 }

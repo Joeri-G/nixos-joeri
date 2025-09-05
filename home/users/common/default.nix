@@ -7,6 +7,10 @@
 }:
 
 {
+  users.mutableUsers = false;
+  home-manager.sharedModules = [
+    inputs.sops-nix.homeManagerModules.sops
+  ];
   nixpkgs = {
     # You can add overlays here
     overlays = [

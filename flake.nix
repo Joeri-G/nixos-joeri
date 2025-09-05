@@ -11,12 +11,18 @@
     };
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
+
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
     self,
     home-manager,
     nixpkgs,
+    sops-nix,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -39,7 +45,10 @@
       };
       fossbox = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
-        modules = [./hosts/fossbox];
+        modules = [
+          ./hosts/fossbox
+          sops-nix.nixosModules.sops
+        ];
       };
     };
     homeConfigurations = {
@@ -51,7 +60,10 @@
       "joeri@fossbox" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages."x86_64-linux";
         extraSpecialArgs = {inherit inputs outputs;};
-        modules = [./home/users/joeri/fossbox.nix];
+        modules = [
+          sops-nix.homeManagerModules.sops
+          ./home/users/joeri/fossbox.nix
+        ];
       };
     };
   };

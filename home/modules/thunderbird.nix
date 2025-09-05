@@ -1,6 +1,9 @@
 { config, pkgs, ... }:
 
 {
+  home.packages = with pkgs; [
+    protonmail-bridge
+  ];
   programs.thunderbird = {
     enable = true;
     profiles."Default" = {

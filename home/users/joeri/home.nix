@@ -6,7 +6,7 @@
 
 {
   imports = [
-
+    # inputs.sops-nix.homeManagerModules.sops
     ../../modules
     ./packages.nix
     ./config.nix

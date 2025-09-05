@@ -73,4 +73,16 @@
     };
   };
   security.pam.services.hyprlock = {};
+
+  sops = {
+    defaultSopsFile = ../../secrets/sops-secrets.yaml;
+    defaultSopsFormat = "yaml";
+    validateSopsFiles = false;
+
+    age = {
+      keyFile = "/home/joeri/.config/sops/age/keys.txt";
+      # sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+      generateKey = true;
+    };
+  };
 }

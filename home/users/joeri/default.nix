@@ -6,8 +6,10 @@
 }:
 
 {
+  sops.secrets.joeri-password.neededForUsers = true;
   users.users.joeri = {
-    initialHashedPassword = "$y$j9T$4RXTEuYH/1WwVZ9xBMfAz/$LP8O9TOUTV1KCG8lxsAu0jIWVcllZ85zskZdXaFi3DD";
+    # initialHashedPassword = "$y$j9T$4RXTEuYH/1WwVZ9xBMfAz/$LP8O9TOUTV1KCG8lxsAu0jIWVcllZ85zskZdXaFi3DD";
+    hashedPasswordFile = config.sops.secrets.joeri-password.path; # SOPS exposes a file containing the secret.
     isNormalUser = true;
     description = "joeri";
     extraGroups = [

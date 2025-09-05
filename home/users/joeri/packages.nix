@@ -15,5 +15,9 @@
 
     # music
     # tonelib-zoom
+
+    # password stuff
+    sops
+    age
   ];
 }
