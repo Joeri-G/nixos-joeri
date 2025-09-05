@@ -19,5 +19,10 @@
     # password stuff
     sops
     age
+    proton-pass
+    # pass
+    gnupg
+    gcr
+    seahorse
   ];
 }

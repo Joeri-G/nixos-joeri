@@ -85,4 +85,7 @@
       generateKey = true;
     };
   };
+  programs.gnupg.agent = {
+    enable = true;
+  };
 }

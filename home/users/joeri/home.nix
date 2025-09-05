@@ -59,6 +59,8 @@
     # EDITOR = "emacs";
     # KITTY_DISABLE_WAYLAND=0;
   };
+  # services.pass-secret-service.enable = true;
+  services.gnome-keyring.enable = true;
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
