@@ -24,5 +24,11 @@
     gnupg
     gcr
     seahorse
+
+    # office tools
+    libreoffice
+    texliveTeTeX
+    texstudio
+    obsidian
   ];
 }
