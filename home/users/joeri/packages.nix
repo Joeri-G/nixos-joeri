@@ -12,6 +12,7 @@
     neofetch
     wget
     bottom # terminal resource monitor
+    kdePackages.dolphin
 
     # music
     # tonelib-zoom
@@ -25,10 +26,16 @@
     gcr
     seahorse
 
+    # vpn
+    protonvpn-gui
+
     # office tools
     libreoffice
     texliveTeTeX
     texstudio
-    obsidian
+#    obsidian
+    tor-browser
+    qbittorrent
+    vlc
   ];
 }

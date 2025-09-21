@@ -50,6 +50,13 @@
           sops-nix.nixosModules.sops
         ];
       };
+      fossbox2 = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+          ./hosts/fossbox2
+          sops-nix.nixosModules.sops
+        ];
+      };
     };
     homeConfigurations = {
       "joeri@dev-vm" = home-manager.lib.homeManagerConfiguration {
@@ -63,6 +70,14 @@
         modules = [
           sops-nix.homeManagerModules.sops
           ./home/users/joeri/fossbox.nix
+        ];
+      };
+      "joeri@fossbox2" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages."x86_64-linux";
+        extraSpecialArgs = {inherit inputs outputs;};
+        modules = [
+          sops-nix.homeManagerModules.sops
+          ./home/users/joeri/fossbox2.nix
         ];
       };
     };
