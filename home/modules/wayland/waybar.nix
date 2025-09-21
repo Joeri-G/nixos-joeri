@@ -89,30 +89,50 @@
       };
     };
     style = ''
-        #workspaces {
-          margin: 4px 7px 4px 7px;
-          border-radius: 8px;
-          border-width: 2px;
-          border-color: rgba(80, 73, 69, 0.5);
-          border-style: solid;
-          background-color:  rgba(102, 92, 84, 0.5);
-        }
+.background {
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-size: 12px;
+  border-top: 2px solid rgba(80, 73, 69, 0.5);
+}
 
-        #workspaces button {
-          border: none;
-          padding: 1px 2px 1px 2px;
-          border-radius: 5px;
-        }
+.modules-left, .modules-right, .modules-center {
+  margin: 0 0.5em;
+}
 
-        #workspaces button.active { 	
-          background-color: rgba(131, 165, 152, 0.5);
-          box-shadow: none;
-          border: none;
-        }
+window#waybar {
+  padding: 0 24px;
+  background: rgba(255, 255, 255, 0.25);
+}
 
-        #workspaces button:hover {
-          background-color: rgba(189, 174, 147, 0.5);
-        }
+#battery {
+  background-color: #2a2;
+  padding: 0 4px;
+}
+
+#workspaces {
+  margin: 4px;
+  font-size: 10px;
+}
+
+#workspaces button {
+  background: rgba(80, 73, 69, 0.5);
+  border: none;
+  border: 1px solid black;
+  padding: 0px 1px;
+  border-radius: 0;
+  margin: 0 1px;
+}
+
+
+#workspaces button.active { 	
+  background-color: rgba(131, 165, 152, 0.5);
+  box-shadow: none;
+}
+
+#workspaces button:hover {
+  background-color: rgba(189, 174, 147, 0.5);
+}
     '';
   };
 }
