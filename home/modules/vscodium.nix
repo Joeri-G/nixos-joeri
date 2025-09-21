@@ -6,6 +6,7 @@
       vscode = vscodium;
       vscodeExtensions = with vscode-extensions; [
         jnoortheen.nix-ide
+        ms-vscode.live-server
       ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
       ];
     })

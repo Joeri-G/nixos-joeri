@@ -25,7 +25,12 @@
 
       "general.autoScroll" = true;
 
+      "privacy.resistFingerprinting" = false;
+      "privacy.fingerprintingProtection" = true;
+      "privacy.fingerprintingProtection.overrides.AllTargets" = true;
+      "privacy.fingerprintingProtection.overrides.JSDateTimeUTC" = true;
       # "pdfjs.defaultZoomValue" = 100;
+      
     };
     profiles.default = {
       # CSS To make the top bar smaller
@@ -193,6 +198,7 @@
       # Search config
       search = {
         default = "ddgnjs";
+        force = true;
         engines = {
           ddg-no-js = {
             definedAliases = [ "@ddgnjs" ];
