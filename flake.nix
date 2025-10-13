@@ -5,18 +5,21 @@
   '';
 
   inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
-
+    # Going to be moved to agenix
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
+    agenix = {
+      url  = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     winapps = {
       url = "github:winapps-org/winapps";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -28,6 +31,7 @@
     home-manager,
     nixpkgs,
     sops-nix,
+    agenix,
     winapps,
     ...
   } @ inputs: let
@@ -65,16 +69,12 @@
       };
     };
     homeConfigurations = {
-      "joeri@dev-vm" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages."x86_64-linux";
-        extraSpecialArgs = {inherit inputs outputs;};
-        modules = [./home/users/joeri/dev-vm.nix];
-      };
       "joeri@fossbox" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages."x86_64-linux";
         extraSpecialArgs = {inherit inputs outputs;};
         modules = [
           sops-nix.homeManagerModules.sops
+          agenix.nixosModules.default
           ./home/users/joeri/fossbox.nix
         ];
       };
@@ -83,6 +83,7 @@
         extraSpecialArgs = {inherit inputs outputs;};
         modules = [
           sops-nix.homeManagerModules.sops
+          agenix.nixosModules.default
           ./home/users/joeri/fossbox2.nix
         ];
       };
