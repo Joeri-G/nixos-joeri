@@ -16,6 +16,11 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    winapps = {
+      url = "github:winapps-org/winapps";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -23,6 +28,7 @@
     home-manager,
     nixpkgs,
     sops-nix,
+    winapps,
     ...
   } @ inputs: let
     inherit (self) outputs;
