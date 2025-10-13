@@ -5,12 +5,14 @@
     # communication
     signal-desktop
     # whatsie # whatsapp client
-    wasistlos # whatsapp client
+    # wasistlos # whatsapp client
+    zapzap # WhatsApp Client
     telegram-desktop
 
     # general tools
     neofetch
     wget
+    curl
     bottom # terminal resource monitor
     kdePackages.dolphin
 
@@ -37,5 +39,8 @@
     tor-browser
     qbittorrent
     vlc
+
+    # rstudio
+    # rPackages.curl
   ];
 }
