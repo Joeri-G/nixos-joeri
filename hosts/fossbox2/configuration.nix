@@ -23,7 +23,7 @@
     # };
   };
 
-  networking.hostName = "fossbox"; # Define your hostname.
+  networking.hostName = "fossbox2"; # Define your hostname.
   # networking.wireless.enable = true; # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary

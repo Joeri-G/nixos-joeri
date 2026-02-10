@@ -49,14 +49,6 @@
       forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
     overlays = import ./overlays {inherit inputs;};
     nixosConfigurations = {
-      fossbox = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
-        modules = [
-          ./hosts/fossbox
-          # agenix.nixosModules.default
-          sops-nix.nixosModules.sops
-        ];
-      };
       fossbox2 = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
@@ -75,14 +67,6 @@
       };
     };
     homeConfigurations = {
-      "joeri@fossbox" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages."x86_64-linux";
-        extraSpecialArgs = {inherit inputs outputs;};
-        modules = [
-          sops-nix.homeManagerModules.sops
-          ./home/users/joeri/fossbox.nix
-        ];
-      };
       "joeri@fossbox2" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages."x86_64-linux";
         extraSpecialArgs = {inherit inputs outputs;};
