@@ -3,6 +3,7 @@
   pkgs,
   lib,
   inputs,
+  config,
   outputs,
   ...
 }: {
@@ -37,6 +38,11 @@
       # Disable if you don't want unfree packages
       allowUnfree = true;
     };
+    # packageOverrides = pkgs: {
+    #   unstable = import <unstable> {
+    #     config = config.nixpkgs.config;
+    #   };
+    # };
   };
 
   nix = {
@@ -80,12 +86,15 @@
     validateSopsFiles = false;
 
     age = {
-      keyFile = "/home/joeri/.config/sops/age/keys.txt";
-      # sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+      keyFile = "/home/joeri/.config/sops/age/keys.txt"; # "${config.home.homeDirectory}/sops/age/keys.txt";
       generateKey = true;
     };
   };
   programs.gnupg.agent = {
     enable = true;
   };
+  environment.systemPackages = with pkgs; [
+    git
+    # inputs.agenix.packages."${system}".default
+  ];
 }

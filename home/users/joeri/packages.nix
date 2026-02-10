@@ -39,8 +39,12 @@
     tor-browser
     qbittorrent
     vlc
+    gimp
 
+    # # minor
     # rstudio
+    # qgis
     # rPackages.curl
+    # jre_minimal
   ];
 }

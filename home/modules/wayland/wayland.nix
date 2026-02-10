@@ -23,6 +23,7 @@ in
       ];
     };
   };
+  home.sessionVariables.NIXOS_OZONE_WL = "1"; # tell electron apps to use Wayland
   # home.pointerCursor = {
   #   enable = true;
   #   package = pkgs.hyprcursor;

@@ -6,7 +6,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -49,14 +49,11 @@
       forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
     overlays = import ./overlays {inherit inputs;};
     nixosConfigurations = {
-      dev-vm = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs;};
-        modules = [./hosts/dev-vm];
-      };
       fossbox = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
           ./hosts/fossbox
+          # agenix.nixosModules.default
           sops-nix.nixosModules.sops
         ];
       };
@@ -64,6 +61,15 @@
         specialArgs = {inherit inputs outputs;};
         modules = [
           ./hosts/fossbox2
+          # agenix.nixosModules.default
+          sops-nix.nixosModules.sops
+        ];
+      };
+      fossbox3 = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+          ./hosts/fossbox3
+          # agenix.nixosModules.default
           sops-nix.nixosModules.sops
         ];
       };
@@ -74,7 +80,6 @@
         extraSpecialArgs = {inherit inputs outputs;};
         modules = [
           sops-nix.homeManagerModules.sops
-          agenix.nixosModules.default
           ./home/users/joeri/fossbox.nix
         ];
       };
@@ -82,8 +87,15 @@
         pkgs = nixpkgs.legacyPackages."x86_64-linux";
         extraSpecialArgs = {inherit inputs outputs;};
         modules = [
-          sops-nix.homeManagerModules.sops
-          agenix.nixosModules.default
+        sops-nix.homeManagerModules.sops
+          ./home/users/joeri/fossbox2.nix
+        ];
+      };
+      "joeri@fossbox3" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages."x86_64-linux";
+        extraSpecialArgs = {inherit inputs outputs;};
+        modules = [
+        sops-nix.homeManagerModules.sops
           ./home/users/joeri/fossbox2.nix
         ];
       };

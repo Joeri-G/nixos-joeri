@@ -27,4 +27,6 @@
     packages = [inputs.home-manager.packages.${pkgs.system}.default];
   };
   home-manager.users.joeri = import ./home.nix;
+
+  programs.ssh.startAgent = true;
 }
