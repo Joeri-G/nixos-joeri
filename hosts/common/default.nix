@@ -73,7 +73,7 @@
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet -r -t --cmd Hyprland";
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet -r -t --cmd start-hyprland";
         user = "greeter";
       };
     };
@@ -86,7 +86,10 @@
     validateSopsFiles = false;
 
     age = {
-      keyFile = "/home/joeri/.config/sops/age/keys.txt"; # "${config.home.homeDirectory}/sops/age/keys.txt";
+      # keyFile = "/home/joeri/.config/sops/age/keys.txt";
+      # Buggs out on fresh installs, sometimes. Probably because the home dir does not (yet)
+      # exist when home-manager is first installed. Use absolute path for first install as a hack-around.
+      keyFile = "${config.home.homeDirectory}/sops/age/keys.txt";
       generateKey = true;
     };
   };
