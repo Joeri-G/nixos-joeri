@@ -14,6 +14,7 @@
   home-manager = {
     useUserPackages = true;
     extraSpecialArgs = { inherit inputs outputs; };
+    useGlobalPkgs = true;
   };
   nixpkgs = {
     # You can add overlays here
@@ -37,6 +38,9 @@
     config = {
       # Disable if you don't want unfree packages
       allowUnfree = true;
+      # Workaround for https://github.com/nix-community/home-manager/issues/2942
+      allowUnfreePredicate = _: true;
+      
     };
     # packageOverrides = pkgs: {
     #   unstable = import <unstable> {
@@ -86,10 +90,10 @@
     validateSopsFiles = false;
 
     age = {
-      # keyFile = "/home/joeri/.config/sops/age/keys.txt";
+      keyFile = "/home/joeri/.config/sops/age/keys.txt";
       # Buggs out on fresh installs, sometimes. Probably because the home dir does not (yet)
       # exist when home-manager is first installed. Use absolute path for first install as a hack-around.
-      keyFile = "${config.home.homeDirectory}/sops/age/keys.txt";
+      # keyFile = "${config.home.homeDirectory}/sops/age/keys.txt";
       generateKey = true;
     };
   };
