@@ -11,6 +11,7 @@ in
     rofi  # program launcher
     brightnessctl
     hyprshot # screensho
+    # themechanger
   ];
   wayland.windowManager.hyprland = {
     enable = true;
@@ -24,12 +25,22 @@ in
     };
   };
   home.sessionVariables.NIXOS_OZONE_WL = "1"; # tell electron apps to use Wayland
-  # home.pointerCursor = {
+  # gtk = {
   #   enable = true;
-  #   package = pkgs.hyprcursor;
-  #   name = "simple cursor";
-  #   size = 240;
-  #   hyprcursor.enable = true;
-  #   hyprcursor.size = 240;
+
+  #   theme = {
+  #     package = pkgs.flat-remix-gtk;
+  #     name = "Flat-Remix-GTK-Grey-Darkest";
+  #   };
+
+  #   iconTheme = {
+  #     package = pkgs.adwaita-icon-theme;
+  #     name = "Adwaita";
+  #   };
+
+  #   font = {
+  #     name = "Sans";
+  #     size = 11;
+  #   };
   # };
 }
