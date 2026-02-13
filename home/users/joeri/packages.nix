@@ -4,8 +4,6 @@
   home.packages = with pkgs; [
     # communication
     signal-desktop
-    # whatsie # whatsapp client
-    # wasistlos # whatsapp client
     zapzap # WhatsApp Client
     telegram-desktop
 
@@ -17,11 +15,9 @@
     kdePackages.dolphin
 
     # music
-    # tonelib-zoom
+    # tonelib-zoom # broken
 
     # password stuff
-    sops
-    age
     proton-pass
     # pass
     gnupg
@@ -40,11 +36,5 @@
     qbittorrent
     vlc
     gimp
-
-    # # minor
-    # rstudio
-    # qgis
-    # rPackages.curl
-    # jre_minimal
   ];
 }

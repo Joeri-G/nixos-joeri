@@ -2,14 +2,14 @@
 # 
 # home-manager init ./
 
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 {
   imports = [
-    # inputs.sops-nix.homeManagerModules.sops
     ../../modules
     ./packages.nix
     ./config.nix
+    ./secrets.nix
     ../../services
   ];
   # Home Manager needs a bit of information about you and the paths it should

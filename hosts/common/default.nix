@@ -9,6 +9,7 @@
 }: {
   imports = [
     ../../home/users
+    ./secrets.nix
     inputs.home-manager.nixosModules.home-manager
   ];
   home-manager = {
@@ -84,19 +85,6 @@
   };
   security.pam.services.hyprlock = {};
 
-  sops = {
-    defaultSopsFile = ../../secrets/sops-secrets.yaml;
-    defaultSopsFormat = "yaml";
-    validateSopsFiles = false;
-
-    age = {
-      keyFile = "/home/joeri/.config/sops/age/keys.txt";
-      # Buggs out on fresh installs, sometimes. Probably because the home dir does not (yet)
-      # exist when home-manager is first installed. Use absolute path for first install as a hack-around.
-      # keyFile = "${config.home.homeDirectory}/sops/age/keys.txt";
-      generateKey = true;
-    };
-  };
   programs.gnupg.agent = {
     enable = true;
   };
