@@ -78,7 +78,7 @@
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet -r -t --cmd start-hyprland";
+        command = "${pkgs.tuigreet}/bin/tuigreet -r -t --cmd start-hyprland";
         user = "greeter";
       };
     };
