@@ -31,7 +31,8 @@
     libreoffice
     texliveTeTeX
     texstudio
-#    obsidian
+    # obsidian
+    logseq # open source obsidian equivalent
     tor-browser
     qbittorrent
     vlc
