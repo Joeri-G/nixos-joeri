@@ -1,6 +1,8 @@
 { config, pkgs, ... }:
 let
-  mainMod = "SUPER";
+  resources = ../../resources;
+  scripts = "${resources}/scripts";
+  lidswitch-script = pkgs.writeShellScriptBin "lidswitch-script" (builtins.readFile "${scripts}/lidswitch.sh");
 in 
 {
   home.packages = with pkgs; [
@@ -12,6 +14,9 @@ in
     brightnessctl
     hyprshot # screensho
     # themechanger
+
+    # custom scripts
+    lidswitch-script
   ];
   wayland.windowManager.hyprland = {
     enable = true;
@@ -19,8 +24,8 @@ in
       source = [
         "~/.config/hypr/temp-hyprland.conf"
       ];
-      bind = [
-        "${mainMod}, W, exec, wlogout-script"
+      exec = [
+        "lidswitch-script"
       ];
     };
   };

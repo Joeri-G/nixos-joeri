@@ -14,6 +14,12 @@
   home.packages = with pkgs; [
     wlogout-script
   ];
+
+  wayland.windowManager.hyprland.settings = {
+    bind = [
+        "SUPER, W, exec, wlogout-script"
+      ];
+  };
   programs.wlogout = {
     enable = true;
     layout = [
