@@ -103,6 +103,10 @@
 
   programs.fish.enable = true;
 
+  environment.systemPackages = [
+    pkgs.framework-tool
+  ];
+
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
