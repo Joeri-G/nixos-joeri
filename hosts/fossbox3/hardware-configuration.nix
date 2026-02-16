@@ -29,6 +29,24 @@
     size = 32*1024; # 16 GB
   }];
 
+  # Hibernation settings
+
+  boot.resumeDevice = "/dev/disk/by-uuid/afc3dd32-376b-4251-8cc2-e738ea9cfc05";
+
+  powerManagement.enable = true;
+
+  # Suspend first
+  boot.kernelParams = [
+    "mem_sleep_default=deep"
+    "resume_offset=69675008"
+  ];
+
+  # Define time delay for hibernation
+  systemd.sleep.extraConfig = ''
+    HibernateDelaySec=30m
+    SuspendState=mem
+  '';
+
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
@@ -43,7 +61,7 @@
   #
   # Audio
   #
-  services.pulseaudio.enable = false; # Use Pipewire, the modern sound subsystem
+  services.pulseaudio.enable = false; # Use Pipewire instead
 
   security.rtkit.enable = true; # Enable RealtimeKit for audio purposes
 
