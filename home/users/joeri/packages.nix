@@ -13,6 +13,7 @@
     curl
     bottom # terminal resource monitor
     kdePackages.dolphin
+    systemctl-tui
 
     # music
     # tonelib-zoom # broken
