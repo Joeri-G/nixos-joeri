@@ -3,7 +3,7 @@ let
   wallpaperDir = ../../resources/wallpapers;
 in {
   services.hyprpaper = {
-    enable = true;
+    enable = false;
     settings = {
       ipc = "on";
       splash = false;

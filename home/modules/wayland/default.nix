@@ -7,5 +7,6 @@
     ./waybar.nix
     ./wayland.nix
     ./wlogout.nix
+    ./swww.nix
   ];
 }
