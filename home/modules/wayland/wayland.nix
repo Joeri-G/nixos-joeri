@@ -2,7 +2,6 @@
 let
   resources = ../../resources;
   scripts = "${resources}/scripts";
-  wallpapers = "${resources}/wallpapers";
   lidswitch-script = pkgs.writeShellScriptBin "lidswitch-script" (builtins.readFile "${scripts}/lidswitch.sh");
 in 
 {
@@ -27,7 +26,6 @@ in
       ];
       exec = [
         "lidswitch-script"
-        "swww-daemon && swww img wallpapers/black-sand.jpg"
       ];
     };
   };

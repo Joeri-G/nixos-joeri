@@ -11,6 +11,6 @@
     ./calendars.nix
     ./git.nix
     ./ssh.nix
-    ./music.nix
+    ./kiosk-apps.nix
   ];
 }

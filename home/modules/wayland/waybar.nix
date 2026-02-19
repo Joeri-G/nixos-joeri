@@ -1,138 +1,216 @@
-{ config, pkgs, ... }:
-
+{ pkgs, ... }:
+  let
+    styles = ../../resources/styles/waybar.css;
+  in
 {
   home.packages = with pkgs; [
+    hyprpicker
+    blueman
+    bluez
+    swaynotificationcenter
+    yay
+    font-awesome
   ];
-  # fonts.fontconfig.enable = true;
+
+  # Waybar configuration
   programs.waybar = {
     enable = true;
-    systemd.enable = true;
+    style = builtins.readFile "${styles}";
     settings = {
       mainBar = {
-        position = "top";
-        height = 20;
+        height = 24;
         modules-left = [
-          "battery"
-          "disk"
-          "CPU"
-          "memory"
-          "temperature"
-          # "Hyprland"
+          "hyprland/workspaces"
+          "hyprland/mode"
+          "hyprland/scratchpad"
+          "custom/media"
         ];
         modules-center = [
-          "hyprland/workspaces"
+          "hyprland/window"
         ];
         modules-right = [
-          # "Sndio"
           "mpris"
           "idle_inhibitor"
-          "sndio"
-          "user"
-          "custom/wlogout"
+          "temperature"
+          "cpu"
+          "memory"
+          "network"
+          "bluetooth"
+          "pulseaudio"
+          "backlight"
+          # "keyboard-state"
+          "battery"
+          "tray"
+          "custom/notification"
           "clock"
-          # "upower"
         ];
-        # modules
-        clock = {
-          interval = 1;
-          format = "{:%H:%M}";
-          format-alt = "{:%A, %B %d, %Y (%H:%M:%S)}";
-          tooltip-format = "<tt><small>{calendar}</small></tt>";
-          calendar = {
-            mode = "year";
-            mode-mon-col = 3;
-            weeks-pos = "right";
-            on-scroll = 1;
-            format = {
-              months = "<span color='#ffead3'><b>{}</b></span>";
-              days = "<span color='#ecc6d9'><b>{}</b></span>";
-              weeks = "<span color='#99ffdd'><b>W{}</b></span>";
-              weekdays = "<span color='#ffcc66'><b>{}</b></span>";
-              today = "<span color='#ff6699'><b><u>{}</u></b></span>";
-            };
-          };
-          actions =  {
-            on-click-right = "mode";
-            on-scroll-down = "shift_up";
-            on-scroll-up = "shift_down";
+        
+        keyboard-state = {
+          numlock = true;
+          capslock = true;
+          format = "{name} {icon}";
+          format-icons = {
+            locked = "";
+            unlocked = "";
           };
         };
-        # custom modules
-        "custom/wlogout" = {
-          on-click = "wlogout-script";
-          format = "wlogout";
+        
+        "hyprland/mode" = {
+          format = "<span style=\"italic\">{}</span>";
         };
-        "hyprland/workspaces" = {
-            active-only = false;
-            disable-scroll = false;
-            format = "{icon}";
-            on-click = "activate";
-            format-icons = {
-              "1" = "1";
-              "2" = "2";
-              "3" = "3";
-              "4" = "4";
-              "5" = "5";
-              urgent = "!";
-              default = "*";
-              sort-by-number = true;
-            };
+        
+        "hyprland/scratchpad" = {
+          format = "{icon} {count}";
+          show-empty = false;
+          format-icons = [ "" "" ];
+          tooltip = true;
+          tooltip-format = "{app}= {title}";
+        };
+        
+        mpd = {
+          format = " {title} - {artist} {stateIcon} [{elapsedTime=%M=%S}/{totalTime=%M=%S}] {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}[{songPosition}/{queueLength}] [{volume}%]";
+          format-disconnected = " Disconnected";
+          format-stopped = " {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped";
+          unknown-tag = "N/A";
+          interval = 2;
+          consume-icons = {
+            on = " ";
+          };
+          random-icons = {
+            on = " ";
+          };
+          repeat-icons = {
+            on = " ";
+          };
+          single-icons = {
+            on = "1 ";
+          };
+          state-icons = {
+            paused = "";
+            playing = "";
+          };
+          tooltip-format = "MPD (connected)";
+          tooltip-format-disconnected = "MPD (disconnected)";
+          on-click = "mpc toggle";
+          on-click-right = "foot -a ncmpcpp ncmpcpp";
+          on-scroll-up = "mpc volume +2";
+          on-scroll-down = "mpc volume -2";
+        };
+        
+        idle_inhibitor = {
+          format = "{icon}";
+          format-icons = {
+            activated = "";
+            deactivated = "";
+          };
+        };
+        
+        tray = {
+          spacing = 10;
+        };
 
-            persistent-workspaces = {
-              "1" = [ ];
-              "2" = [ ];
-              "3" = [ ];
-              "4" = [ ];
-              "5" = [ ];
-            };
+        clock = {
+          tooltip-format = "<big>{=%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
+          format = "{=L%Y-%m-%d<small>[%a]</small> <tt><small>%p</small></tt>%I=%M}";
+        };
+
+        cpu = {
+          format = " {usage}%";
+        };
+
+        memory = {
+          format = " {}%";
+        };
+
+        temperature = {
+          thermal-zone = 2;
+          hwmon-path = "/sys/class/hwmon/hwmon2/temp1_input";
+          critical-threshold = 80;
+          format-critical = "{icon} {temperatureC}°C";
+          format = "{icon} {temperatureC}°C";
+          format-icons = [ "" "" "" ];
+        };
+
+        backlight = {
+          format = "{icon} {percent}%";
+          format-icons = [ "" "" "" "" "" "" "" "" "" ];
+        };
+
+        battery = {
+          states = {
+            warning = 30;
+            critical = 15;
           };
+          format = "{icon} {capacity}%";
+          format-charging = " {capacity}%";
+          format-plugged = " {capacity}%";
+          format-alt = "{icon} {time}";
+          format-icons = [ "" "" "" "" "" ];
+        };
+
+        network = {
+          format-wifi = "{essid} ({signalStrength}%) ";
+          format-ethernet = " {ifname}";
+          tooltip-format = " {ifname} via {gwaddr}";
+          format-linked = " {ifname} (No IP)";
+          format-disconnected = "Disconnected ⚠ {ifname}";
+          format-alt = " {ifname}= {ipaddr}/{cidr}";
+        };
+
+        bluetooth = {
+          format = " {status}";
+          format-connected = " {device_alias}";
+          format-connected-battery = " {device_alias} {device_battery_percentage}%";
+          tooltip-format = "{controller_alias}\t{controller_address}\n\n{num_connections} connected";
+          tooltip-format-connected = "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}";
+          tooltip-format-enumerate-connected = "{device_alias}\t{device_address}";
+          tooltip-format-enumerate-connected-battery = "{device_alias}\t{device_address}\t{device_battery_percentage}%";
+        };
+
+        pulseaudio = {
+          scroll-step = 5;
+          format = "{icon} {volume}% {format_source}";
+          format-bluetooth = " {volume}% {format_source}";
+          format-bluetooth-muted = "  {format_source}";
+          format-muted = "  {format_source}";
+          format-source = " {volume}%";
+          format-source-muted = "";
+          format-icons = {
+            default = [ "" "" "" ];
+          };
+          on-click = "pavucontrol";
+          on-click-right = "foot -a pw-top pw-top";
+        };
+
+        "custom/notification" = {
+          tooltip = true;
+          format = "<span size='16pt'>{icon}</span>";
+          format-icons = {
+            notification = "󱅫";
+            none = "󰂜";
+            "dnd-notification" = "󰂠";
+            "dnd-none" = "󰪓";
+            "inhibited-notification" = "󰂛";
+            "inhibited-none" = "󰪑";
+            "dnd-inhibited-notification" = "󰂛";
+            "dnd-inhibited-none" = "󰪑";
+          };
+          return-type = "json";
+          "exec-if" = "which swaync-client";
+          exec = "swaync-client -swb";
+          on-click = "swaync-client -t -sw";
+          on-click-right = "swaync-client -d -sw";
+          escape = true;
+        };
+
+        mpris = {
+          format = "🎵 {artist}-{title}";
+          format-paused = "🎵⏸️ ";
+          format-stopped = "🎵⏹️ ";
+          max-length = 40;
+          on-click = "playerctl play-pause";
+        };
       };
     };
-    style = ''
-.background {
-  background: rgba(0, 0, 0, 0.8);
-  color: #fff;
-  font-size: 12px;
-  border-bottom: 1px solid rgba(80, 73, 69, 0.5);
-}
-
-.modules-left, .modules-right, .modules-center {
-  margin: 0 0.5em;
-}
-
-window#waybar {
-  padding: 0 24px;
-  background: rgba(0, 0, 0, 0.75);
-}
-
-#battery {
-  background-color: #2a2;
-  padding: 0 2px;
-}
-
-#workspaces {
-  margin: 2px;
-  font-size: 1.25em;
-}
-
-#workspaces button {
-  background: rgba(80, 73, 69, 0.5);
-  border: none;
-  border: 1px solid black;
-  padding: 0px 1px;
-  border-radius: 0;
-  margin: 0 1px;
-}
-
-
-#workspaces button.active { 	
-  background-color: rgba(131, 165, 152, 0.5);
-  box-shadow: none;
-}
-
-#workspaces button:hover {
-  background-color: rgba(189, 174, 147, 0.5);
-}
-    '';
   };
 }

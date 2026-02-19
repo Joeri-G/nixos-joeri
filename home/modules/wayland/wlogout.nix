@@ -17,7 +17,7 @@
 
   wayland.windowManager.hyprland.settings = {
     bind = [
-        "SUPER, W, exec, wlogout-script"
+        "SUPER, L, exec, wlogout-script"
       ];
   };
   programs.wlogout = {

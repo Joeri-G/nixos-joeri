@@ -8,5 +8,6 @@
     ./wayland.nix
     ./wlogout.nix
     ./swww.nix
+    ./pywal.nix
   ];
 }
