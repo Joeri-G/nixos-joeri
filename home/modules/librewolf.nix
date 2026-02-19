@@ -250,6 +250,9 @@
       deezer = {
         isDefault = false;
         id = 1;
+        # extension.packages = inputs.firefox-addons.packages.${pkgs.system}; [
+        #  ublock-origin
+        # ];
       };
       whatsapp = {
         isDefault = false;
@@ -259,10 +262,6 @@
     policies = {
       BlockAboutConfig = false;
       DisableTelemetry = true;
-      DisablePocket = true;
-      DisableFirefoxAccounts = true;
-      DisableFirefoxScreenshots = true;
-      DisplayMenuBar = "default-off"; # alternatives: "always", "never" or "default-on"
       DefaultDownloadDirectory = "\${home}/Downloads";
       # Extension list
       ExtensionSettings = with builtins;
@@ -281,6 +280,7 @@
           (extension "tab-session-manager" "Tab-Session-Manager@sienori")
           (extension "canvasblocker" "CanvasBlocker@kkapsner.de")
           (extension "darkreader" "addon@darkreader.org")
+          (extension "disconnect" "2.0@disconnect.me")
           (extension "iamge-search-options" "{4a313247-8330-4a81-948e-b79936516f78}")
           (extension "leechblock-ng" "leechblockng@proginosko.com")
           (extension "noscript" "{73a6fe31-595d-460b-a920-fcc0f8843232}")
