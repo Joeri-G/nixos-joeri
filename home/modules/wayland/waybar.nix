@@ -9,8 +9,8 @@
     systemd.enable = true;
     settings = {
       mainBar = {
-        position = "bottom";
-        height = 24;
+        position = "top";
+        height = 20;
         modules-left = [
           "battery"
           "disk"
@@ -90,10 +90,10 @@
     };
     style = ''
 .background {
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.8);
   color: #fff;
   font-size: 12px;
-  border-top: 2px solid rgba(80, 73, 69, 0.5);
+  border-bottom: 1px solid rgba(80, 73, 69, 0.5);
 }
 
 .modules-left, .modules-right, .modules-center {
@@ -102,17 +102,17 @@
 
 window#waybar {
   padding: 0 24px;
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(0, 0, 0, 0.75);
 }
 
 #battery {
   background-color: #2a2;
-  padding: 0 4px;
+  padding: 0 2px;
 }
 
 #workspaces {
-  margin: 4px;
-  font-size: 10px;
+  margin: 2px;
+  font-size: 1.25em;
 }
 
 #workspaces button {
