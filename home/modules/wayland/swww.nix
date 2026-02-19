@@ -5,7 +5,7 @@
   ...
 }:
 let
-  resources = ../../resources;
+  resources = ../../../resources;
   wallpapers = "${resources}/wallpapers";
   wallpaperchanger = pkgs.writeShellScriptBin "wallpaperchanger" ''
 
