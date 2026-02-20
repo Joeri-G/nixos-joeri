@@ -8,7 +8,7 @@
     deezer = {
       name = "Deezer";
       comment = "Open deezer in a kiosk browser profile";
-      exec = "${deezer}";
+      exec = "deezer";
       terminal = false;
       type = "Application";
       categories = [
@@ -19,7 +19,7 @@
     whatsapp = {
       name = "Whatsapp";
       comment = "Open whatsapp in a kiosk browser profile";
-      exec = "${whatsapp}";
+      exec = "whatsapp";
       terminal = false;
       type = "Application";
       categories = [

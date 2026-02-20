@@ -1,29 +1,33 @@
 { pkgs, ... }:
   let
-    styles = ../../resources/styles/waybar.css;
+    resources = ../../../resources;
+    styles = "${resources}/styles/waybar.css";
+    icons = "${resources}/icons";
+    wallpapers = "${resources}/wallpapers";
   in
 {
   home.packages = with pkgs; [
     hyprpicker
     blueman
     bluez
-    swaynotificationcenter
     yay
     font-awesome
   ];
 
   # Waybar configuration
+  # based on https://github.com/sephid86/fulleaf/tree/master/skel/.config/waybar
   programs.waybar = {
     enable = true;
     style = builtins.readFile "${styles}";
     settings = {
       mainBar = {
+        reload_style_on_change = true;
         height = 24;
         modules-left = [
+          "image#wallpaper"
           "hyprland/workspaces"
-          "hyprland/mode"
-          "hyprland/scratchpad"
-          "custom/media"
+          # "hyprland/mode"
+          # "hyprland/scratchpad"
         ];
         modules-center = [
           "hyprland/window"
@@ -41,9 +45,17 @@
           # "keyboard-state"
           "battery"
           "tray"
-          "custom/notification"
+          # "custom/notification"
           "clock"
         ];
+
+        "image#wallpaper" = {
+          path = "${icons}/nixos-logo-gradient.png";
+          interval = 100000000000;
+          tooltip = true;
+          tooltip-format = "Change the wallpaper for this monitor";
+          on-click = "change-wallpaper ${wallpapers}";
+        };
         
         keyboard-state = {
           numlock = true;
@@ -53,10 +65,12 @@
             locked = "";
             unlocked = "";
           };
+          interval =  60;
         };
         
         "hyprland/mode" = {
           format = "<span style=\"italic\">{}</span>";
+          interval =  60;
         };
         
         "hyprland/scratchpad" = {
@@ -64,49 +78,21 @@
           show-empty = false;
           format-icons = [ "" "" ];
           tooltip = true;
+          interval =  60;
           tooltip-format = "{app}= {title}";
         };
-        
-        mpd = {
-          format = " {title} - {artist} {stateIcon} [{elapsedTime=%M=%S}/{totalTime=%M=%S}] {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}[{songPosition}/{queueLength}] [{volume}%]";
-          format-disconnected = " Disconnected";
-          format-stopped = " {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped";
-          unknown-tag = "N/A";
-          interval = 2;
-          consume-icons = {
-            on = " ";
-          };
-          random-icons = {
-            on = " ";
-          };
-          repeat-icons = {
-            on = " ";
-          };
-          single-icons = {
-            on = "1 ";
-          };
-          state-icons = {
-            paused = "";
-            playing = "";
-          };
-          tooltip-format = "MPD (connected)";
-          tooltip-format-disconnected = "MPD (disconnected)";
-          on-click = "mpc toggle";
-          on-click-right = "foot -a ncmpcpp ncmpcpp";
-          on-scroll-up = "mpc volume +2";
-          on-scroll-down = "mpc volume -2";
-        };
-        
         idle_inhibitor = {
           format = "{icon}";
           format-icons = {
             activated = "";
             deactivated = "";
           };
+          interval =  60;
         };
         
         tray = {
           spacing = 10;
+          interval =  60;
         };
 
         clock = {
@@ -140,10 +126,12 @@
 
         cpu = {
           format = " {usage}%";
+          interval =  60;
         };
 
         memory = {
           format = " {}%";
+          interval =  60;
         };
 
         temperature = {
@@ -153,11 +141,13 @@
           format-critical = "{icon} {temperatureC}°C";
           format = "{icon} {temperatureC}°C";
           format-icons = [ "" "" "" ];
+          interval =  60;
         };
 
         backlight = {
           format = "{icon} {percent}%";
           format-icons = [ "" "" "" "" "" "" "" "" "" ];
+          interval =  60;
         };
 
         battery = {
@@ -179,6 +169,7 @@
           format-linked = " {ifname} (No IP)";
           format-disconnected = "Disconnected ⚠ {ifname}";
           format-alt = " {ifname}= {ipaddr}/{cidr}";
+          interval =  60;
         };
 
         bluetooth = {
@@ -189,6 +180,7 @@
           tooltip-format-connected = "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}";
           tooltip-format-enumerate-connected = "{device_alias}\t{device_address}";
           tooltip-format-enumerate-connected-battery = "{device_alias}\t{device_address}\t{device_battery_percentage}%";
+          interval =  60;
         };
 
         pulseaudio = {
@@ -204,36 +196,30 @@
           };
           on-click = "pavucontrol";
           on-click-right = "foot -a pw-top pw-top";
+          interval =  60;
         };
 
-        "custom/notification" = {
-          tooltip = true;
-          format = "<span size='16pt'>{icon}</span>";
-          format-icons = {
-            notification = "󱅫";
-            none = "󰂜";
-            "dnd-notification" = "󰂠";
-            "dnd-none" = "󰪓";
-            "inhibited-notification" = "󰂛";
-            "inhibited-none" = "󰪑";
-            "dnd-inhibited-notification" = "󰂛";
-            "dnd-inhibited-none" = "󰪑";
-          };
-          return-type = "json";
-          "exec-if" = "which swaync-client";
-          exec = "swaync-client -swb";
-          on-click = "swaync-client -t -sw";
-          on-click-right = "swaync-client -d -sw";
-          escape = true;
-        };
-
-        mpris = {
-          format = "🎵 {artist}-{title}";
-          format-paused = "🎵⏸️ ";
-          format-stopped = "🎵⏹️ ";
-          max-length = 40;
-          on-click = "playerctl play-pause";
-        };
+      #   "custom/notification" = {
+      #     tooltip = true;
+      #     format = "<span size='16pt'>{icon}</span>";
+      #     format-icons = {
+      #       notification = "󱅫";
+      #       none = "󰂜";
+      #       "dnd-notification" = "󰂠";
+      #       "dnd-none" = "󰪓";
+      #       "inhibited-notification" = "󰂛";
+      #       "inhibited-none" = "󰪑";
+      #       "dnd-inhibited-notification" = "󰂛";
+      #       "dnd-inhibited-none" = "󰪑";
+      #     };
+      #     return-type = "json";
+      #     exec-if = "which swaync-client";
+      #     exec = "swaync-client -swb";
+      #     on-click = "swaync-client -t -sw";
+      #     on-click-right = "swaync-client -d -sw";
+      #     escape = true;
+      #     interval =  60;
+      #   };
       };
     };
   };

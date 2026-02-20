@@ -9,5 +9,6 @@
     ./wlogout.nix
     ./swww.nix
     ./pywal.nix
+    ./rofi.nix
   ];
 }

@@ -10,6 +10,7 @@
       usegeoclue = false;
       dbusserver = true;
       portal = true;
+      
     };
   };
 }

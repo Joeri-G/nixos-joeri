@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
   let
-    resources = ../../resources;
+    resources = ../../../resources;
     icons = "${resources}/icons";
     scripts = "${resources}/scripts";
     wlogout-script = pkgs.writeShellScriptBin "wlogout-script" (builtins.readFile "${scripts}/wlogout.sh");

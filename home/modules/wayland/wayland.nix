@@ -1,16 +1,14 @@
 { config, pkgs, ... }:
 let
-  resources = ../../resources;
+  resources = ../../../resources;
   scripts = "${resources}/scripts";
   lidswitch-script = pkgs.writeShellScriptBin "lidswitch-script" (builtins.readFile "${scripts}/lidswitch.sh");
 in 
 {
   home.packages = with pkgs; [
     kitty
-    gtk3
     qt5.qtwayland
     qt6.qtwayland
-    rofi  # program launcher
     brightnessctl
     hyprshot # screensho
     # themechanger

@@ -7,30 +7,16 @@
 let
   resources = ../../../resources;
   wallpapers = "${resources}/wallpapers";
-  wallpaperchanger = pkgs.writeShellScriptBin "wallpaperchanger" ''
-
-    while true; do
-        # List files in the wallpaper directory and send them to wofi
-       SELECTED=$(ls "${wallpapers}"/*.{png,jpg,jpeg,gif,webp} 2>/dev/null | xargs -n 1 basename |  rofi -dmenu -p "" -theme-str '#window { width: 300px; }' -window-title "Select a wallpaper")
-
-        # Check if a selection was made
-        if [ -n "$SELECTED" ]; then
-            # Set the selected wallpaper using swww
-            swww img --transition-fps 144 --transition-type grow --transition-duration 2 --invert-y --transition-pos 0,0 "${wallpapers}/$SELECTED"
-            break
-        else
-            # Exit the loop if no selection is made (e.g., user closes wofi or presses ESC)
-           break
-      fi
-    done
-  '';
+  select-wallpaper = pkgs.writeShellScriptBin "select-wallpaper" (builtins.readFile "${resources}/scripts/select-wallpaper.sh");
+  change-wallpaper = pkgs.writeShellScriptBin "change-wallpaper" (builtins.readFile "${resources}/scripts/change-wallpaper.sh");
 in
 {
   home.packages = with pkgs; [
     swww
-    wallpaperchanger
+    select-wallpaper
+    change-wallpaper
   ];
   wayland.windowManager.hyprland.settings.exec = [
-    "swww-daemon && swww img ${wallpapers}/black-sand.jpg"
+    "swww-daemon && change-wallpaper ${wallpapers}/black-sand.jpg"
   ];
 }
