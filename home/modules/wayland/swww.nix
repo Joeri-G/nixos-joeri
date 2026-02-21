@@ -1,7 +1,5 @@
 {
   pkgs,
-  config,
-  lib,
   ...
 }:
 let
@@ -17,6 +15,6 @@ in
     wallpaper-menu
   ];
   wayland.windowManager.hyprland.settings.exec = [
-    "swww-daemon && wallpaper-select ${wallpapers}/black-sand.jpg"
+    "swww-daemon && wallpaper-select ${wallpapers}/birds.jpg"
   ];
 }
