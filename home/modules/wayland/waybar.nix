@@ -135,7 +135,7 @@
         };
 
         memory = {
-          format = "&xf538; {}%";
+          format = "&#xf538; {}%";
           interval =  60;
         };
 
