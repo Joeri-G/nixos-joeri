@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 while true; do
     # List files in the wallpaper directory and send them to wofi
-    SELECTED=$(ls "$1"/*.{png,jpg,jpeg,gif,webp} 2>/dev/null | xargs -n 1 basename |  rofi -dmenu -p "" -theme-str '#window { width: 300px; }' -window-title "Select a wallpaper")
+    SELECTED=$(ls "$1"/*.{png,jpg,jpeg,gif,webp} 2>/dev/null | xargs -n 1 basename |  launcher auto -dmenu -p "" -theme-str '#window { width: 300px; }' -window-title "Select a wallpaper")
 
     # Check if a selection was made
     if [ -n "$SELECTED" ]; then

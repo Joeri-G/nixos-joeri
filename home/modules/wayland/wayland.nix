@@ -50,6 +50,9 @@ in
       name = "Zukitre-dark";
     };
   };
+
+  # org.freedesktop.portal.Settings must return something for Librewolf to be able to detect the theme.
+
   dconf.settings = {
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
