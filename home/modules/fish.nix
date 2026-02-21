@@ -1,6 +1,9 @@
 { config, lib, pkgs, ... }:
 {
-  programs.fish.shellInit = ''
-    wal -R # restore color scheme
-  '';
+  programs.fish = {
+    enable = true;
+    shellInit = ''
+      cat ~/.cache/wal/sequences
+    '';
+  };
 }

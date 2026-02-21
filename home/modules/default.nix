@@ -12,5 +12,6 @@
     ./git.nix
     ./ssh.nix
     ./kiosk-apps.nix
+    ./kitty.nix
   ];
 }

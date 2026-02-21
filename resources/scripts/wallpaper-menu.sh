@@ -5,7 +5,7 @@ while true; do
 
     # Check if a selection was made
     if [ -n "$SELECTED" ]; then
-        change-wallpaper "$SELECTED/$1"
+        wallpaper-select "$1/$SELECTED"
         break
     else
         # Exit the loop if no selection is made (e.g., user closes wofi or presses ESC)

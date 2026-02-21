@@ -7,16 +7,16 @@
 let
   resources = ../../../resources;
   wallpapers = "${resources}/wallpapers";
-  select-wallpaper = pkgs.writeShellScriptBin "select-wallpaper" (builtins.readFile "${resources}/scripts/select-wallpaper.sh");
-  change-wallpaper = pkgs.writeShellScriptBin "change-wallpaper" (builtins.readFile "${resources}/scripts/change-wallpaper.sh");
+  wallpaper-select = pkgs.writeShellScriptBin "wallpaper-select" (builtins.readFile "${resources}/scripts/wallpaper-select.sh");
+  wallpaper-menu = pkgs.writeShellScriptBin "wallpaper-menu" (builtins.readFile "${resources}/scripts/wallpaper-menu.sh");
 in
 {
   home.packages = with pkgs; [
     swww
-    select-wallpaper
-    change-wallpaper
+    wallpaper-select
+    wallpaper-menu
   ];
   wayland.windowManager.hyprland.settings.exec = [
-    "swww-daemon && change-wallpaper ${wallpapers}/black-sand.jpg"
+    "swww-daemon && wallpaper-select ${wallpapers}/black-sand.jpg"
   ];
 }

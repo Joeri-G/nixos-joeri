@@ -36,6 +36,15 @@
       default = {
         isDefault = true;
         id = 0;
+        userContent = ''
+          @-moz-document url("about:home"), 
+          url("about:blank"), 
+          url("about:newtab") {
+            body {
+              background-color: transparent !important; 
+            }
+          }
+        '';
         # CSS To make the top bar smaller
         # Based on: https://github.com/Zyox-zSys/SlimBarsFirefox
         userChrome = ''

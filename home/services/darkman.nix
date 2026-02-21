@@ -1,5 +1,4 @@
 { config, lib, pkgs, ... }:
-
 {
   services.darkman = {
     enable = true;
@@ -10,7 +9,20 @@
       usegeoclue = false;
       dbusserver = true;
       portal = true;
-      
     };
+    darkModeScripts = {
+      # reload wallpaper
+      color-theme = ''
+        wallpaper-select "$(swww query | awk -F 'image: ' '{print $2}')" &&
+        switch-gtk-theme dark
+      '';
+    };
+    lightModeScripts = {
+      # reload wallpaper
+      color-theme = ''
+        wallpaper-select "$(swww query | awk -F 'image: ' '{print $2}')" &&
+        switch-gtk-theme light
+      '';
+    };  
   };
 }

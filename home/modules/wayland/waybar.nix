@@ -54,7 +54,7 @@
           interval = 100000000000;
           tooltip = true;
           tooltip-format = "Change the wallpaper for this monitor";
-          on-click = "change-wallpaper ${wallpapers}";
+          on-click = "wallpaper-menu ${wallpapers}";
         };
         
         keyboard-state = {
@@ -84,8 +84,8 @@
         idle_inhibitor = {
           format = "{icon}";
           format-icons = {
-            activated = "";
-            deactivated = "";
+            activated = "&#xf06e;";
+            deactivated = "&#xf070;";
           };
           interval =  60;
         };
@@ -104,11 +104,16 @@
             weeks-pos = "right";
             on-scroll = 1;
             format = {
-              months =     "<span color='#ffead3'><b>{}</b></span>";
-              days =       "<span color='#ecc6d9'><b>{}</b></span>";
-              weeks =      "<span color='#99ffdd'><b>W{}</b></span>";
-              weekdays =   "<span color='#ffcc66'><b>{}</b></span>";
-              today =      "<span color='#ff6699'><b><u>{}</u></b></span>";
+              # months =     "<span color='#ffead3'><b>{}</b></span>";
+              # days =       "<span color='#ecc6d9'><b>{}</b></span>";
+              # weeks =      "<span color='#99ffdd'><b>W{}</b></span>";
+              # weekdays =   "<span color='#ffcc66'><b>{}</b></span>";
+              # today =      "<span color='#ff6699'><b><u>{}</u></b></span>";
+              months =     "<span><b>{}</b></span>";
+              days =       "<span><b>{}</b></span>";
+              weeks =      "<span><b>W{}</b></span>";
+              weekdays =   "<span><b>{}</b></span>";
+              today =      "<span><b><u>{}</u></b></span>";
             };
           };
           actions = {
@@ -125,12 +130,12 @@
         };
 
         cpu = {
-          format = " {usage}%";
+          format = "&#xf2db; {usage}%";
           interval =  60;
         };
 
         memory = {
-          format = " {}%";
+          format = "&xf538; {}%";
           interval =  60;
         };
 
@@ -140,7 +145,7 @@
           critical-threshold = 80;
           format-critical = "{icon} {temperatureC}°C";
           format = "{icon} {temperatureC}°C";
-          format-icons = [ "" "" "" ];
+          format-icons = [ "&#xf2c7;" "&#xf2c9;" "&#xf2ca;" ];
           interval =  60;
         };
 
@@ -156,20 +161,20 @@
             critical = 15;
           };
           format = "{icon} {capacity}%";
-          format-charging = " {capacity}%";
-          format-plugged = " {capacity}%";
+          format-charging = "&#xe55b; {capacity}%";
+          format-plugged = "&#xf1e6; {capacity}%";
           format-alt = "{icon} {time}";
-          format-icons = [ "" "" "" "" "" ];
+          format-icons = [ "&#xf240;" "&#xf241;" "&#xf242;" "&#xf243;" "&#xf794;" ];
         };
 
         network = {
-          format-wifi = "{essid} ({signalStrength}%) ";
-          format-ethernet = " {ifname}";
-          tooltip-format = " {ifname} via {gwaddr}";
-          format-linked = " {ifname} (No IP)";
+          format-wifi = "&#xf1eb; ({signalStrength}%) {essid}";
+          format-ethernet = "&#xf796; {ifname}";
+          tooltip-format = "&#xf6ff; {ifname} via {gwaddr}";
+          format-linked = "?? {ifname} (No IP)";
           format-disconnected = "Disconnected ⚠ {ifname}";
-          format-alt = " {ifname}= {ipaddr}/{cidr}";
-          interval =  60;
+          format-alt = "?? {ifname}= {ipaddr}/{cidr}";
+          interval = 60;
         };
 
         bluetooth = {
