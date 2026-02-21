@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 let
   resources = ../../../resources;
+  default-wallpaper = "${resources}/wallpapers/brids.jpg";
   scripts = "${resources}/scripts";
   lidswitch-script = pkgs.writeShellScriptBin "lidswitch-script" (builtins.readFile "${scripts}/lidswitch.sh");
   switch-gtk-theme = pkgs.writeShellScriptBin "switch-gtk-theme" ''
@@ -35,6 +36,7 @@ in
       ];
       exec = [
         "lidswitch-script"
+        "wallpaper-select ${default-wallpaper}"
       ];
       bind = [
         # open background switcher
