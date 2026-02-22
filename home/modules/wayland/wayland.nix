@@ -3,15 +3,8 @@ let
   resources = ../../../resources;
   scripts = "${resources}/scripts";
   lidswitch-script = pkgs.writeShellScriptBin "lidswitch-script" (builtins.readFile "${scripts}/lidswitch.sh");
-  switch-gtk-theme = pkgs.writeShellScriptBin "switch-gtk-theme" ''
-    #!/usr/bin/env bash
-    if [[ "$1" != "dark" && "$1" != "light" ]]; then 
-        echo "pick light or dark"
-        exit 1
-    fi
-    dconf write "/org/gnome/desktop/interface/gtk-theme" "'Zukitre-$1'"
-    dconf write "/org/gnome/desktop/interface/color-scheme" "'prefer-$1'"
-  '';
+  switch-gtk-theme = pkgs.writeShellScriptBin "switch-gtk-theme" (builtins.readFile "${scripts}/switch-gtk-theme.sh");
+  waybar-double-tap-helper = pkgs.writeShellScriptBin "waybar-double-tap-helper" (builtins.readFile "${scripts}/waybar-double-tap-test.sh");
 in 
 {
   home.packages = with pkgs; [
@@ -26,6 +19,7 @@ in
     # custom scripts
     lidswitch-script
     switch-gtk-theme
+    waybar-double-tap-helper
   ];
   wayland.windowManager.hyprland = {
     enable = true;
@@ -39,6 +33,8 @@ in
       bind = [
         # open background switcher
         "SUPER, B, exec, wallpaper-menu ${resources}/wallpapers"
+        # show waybar on double tap
+        "SUPER, SUPER_L, exec, waybar-double-tap-helper"
       ];
     };
   };
