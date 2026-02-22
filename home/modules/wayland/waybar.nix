@@ -12,6 +12,7 @@
     bluez
     yay
     font-awesome
+    killall
   ];
 
   # Waybar configuration
@@ -21,6 +22,9 @@
     style = builtins.readFile "${styles}";
     settings = {
       mainBar = {
+        mode = "dock";
+        exclusive = true;
+        start_hidden = false;
         reload_style_on_change = true;
         height = 24;
         modules-left = [
