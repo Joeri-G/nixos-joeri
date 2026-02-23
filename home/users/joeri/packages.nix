@@ -14,6 +14,7 @@
     bottom # terminal resource monitor
     kdePackages.dolphin
     systemctl-tui
+    powertop
 
     # music
     # tonelib-zoom # broken
