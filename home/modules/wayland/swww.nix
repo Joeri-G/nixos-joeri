@@ -14,7 +14,7 @@ in
     wallpaper-select
     wallpaper-menu
   ];
-  wayland.windowManager.hyprland.settings.exec = [
+  wayland.windowManager.hyprland.settings.exec-once = [
     "swww-daemon && wallpaper-select ${wallpapers}/birds.jpg"
   ];
 }

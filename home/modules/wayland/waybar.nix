@@ -32,20 +32,21 @@
           "hyprland/workspaces"
           # "hyprland/mode"
           # "hyprland/scratchpad"
+          "backlight"
+          "idle_inhibitor"
+          "temperature"
+          "cpu"
+          "memory"
+          # "custon/theme-toggle"
         ];
         modules-center = [
           "hyprland/window"
         ];
         modules-right = [
           "mpris"
-          "idle_inhibitor"
-          "temperature"
-          "cpu"
-          "memory"
           "network"
           "bluetooth"
           "pulseaudio"
-          "backlight"
           # "keyboard-state"
           "battery"
           "tray"
@@ -92,6 +93,10 @@
             deactivated = "&#xf070;";
           };
           interval =  60;
+        };
+
+        "custon/theme-toggle" = {
+          
         };
         
         tray = {
