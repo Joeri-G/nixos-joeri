@@ -173,7 +173,7 @@
           format-charging = "&#xe55b; {capacity}%";
           format-plugged = "&#xf1e6; {capacity}%";
           format-alt = "{icon} {time}";
-          format-icons = [ "&#xf240;" "&#xf241;" "&#xf242;" "&#xf243;" "&#xf794;" ];
+          format-icons = [ "&#xf794;" "&#xf243;" "&#xf242;" "&#xf241;" "&#xf240;" ];
         };
 
         network = {

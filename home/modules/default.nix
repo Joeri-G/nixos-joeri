@@ -13,5 +13,6 @@
     ./ssh.nix
     ./kiosk-apps.nix
     ./kitty.nix
+    ./jetbrains.nix
   ];
 }
