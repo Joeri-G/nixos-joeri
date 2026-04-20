@@ -8,7 +8,7 @@
     telegram-desktop
 
     # general tools
-    neofetch
+    fastfetch
     wget
     curl
     bottom # terminal resource monitor
@@ -27,17 +27,24 @@
     seahorse
 
     # vpn
-    protonvpn-gui
+    proton-vpn
 
     # office tools
     libreoffice
     texliveTeTeX
     texstudio
+    unzip
     # obsidian
     logseq # open source obsidian equivalent
     tor-browser
     qbittorrent
     vlc
     gimp
+
+    # codec
+    openh264
+
+    # CSE
+    zotero
   ];
 }

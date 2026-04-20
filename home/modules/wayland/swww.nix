@@ -10,7 +10,7 @@ let
 in
 {
   home.packages = with pkgs; [
-    swww
+    awww
     wallpaper-select
     wallpaper-menu
   ];
