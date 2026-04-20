@@ -42,10 +42,10 @@
   ];
 
   # Define time delay for hibernation
-  systemd.sleep.extraConfig = ''
-    HibernateDelaySec=30m
-    SuspendState=mem
-  '';
+  systemd.sleep.settings.Sleep = {
+    HibernateDelaySec = "30m";
+    SuspendState= "mem";
+  };
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
@@ -73,4 +73,6 @@
     # Uncomment the following line if you want to use JACK applications
     # jack.enable = true;
   };
+
+  hardware.i2c.enable = true;
 }

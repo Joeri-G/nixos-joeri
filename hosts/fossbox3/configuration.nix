@@ -1,7 +1,8 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{pkgs, inputs, ...}: {
+{pkgs, ...}:
+{
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -108,8 +109,13 @@
 
   programs.fish.enable = true;
 
-  environment.systemPackages = [
-    pkgs.framework-tool
+  environment.systemPackages = with pkgs; [
+    framework-tool
+
+    # # used for controlling i2c displays
+    ddcutil
+    ddcutil-service
+    i2c-tools
   ];
 
   # Open ports in the firewall.

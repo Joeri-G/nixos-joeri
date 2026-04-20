@@ -14,5 +14,6 @@
     ./kiosk-apps.nix
     ./kitty.nix
     ./jetbrains.nix
+    ./brightness.nix
   ];
 }

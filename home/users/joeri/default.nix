@@ -21,6 +21,7 @@
       "input"
       "kvm"
       "qemu-libvirtd"
+      "i2c" # for monitor controls
     ];
     packages = [inputs.home-manager.packages.${pkgs.system}.default];
   };
