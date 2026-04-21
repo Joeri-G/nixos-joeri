@@ -13,14 +13,14 @@
     darkModeScripts = {
       # reload wallpaper
       color-theme = ''
-        wallpaper-select "$(swww query | awk -F 'image: ' '{print $2}')" &&
+        wallpaper-select "$(awww query | awk -F 'image: ' '{print $2}')" &&
         switch-gtk-theme dark
       '';
     };
     lightModeScripts = {
       # reload wallpaper
       color-theme = ''
-        wallpaper-select "$(swww query | awk -F 'image: ' '{print $2}')" &&
+        wallpaper-select "$(awww query | awk -F 'image: ' '{print $2}')" &&
         switch-gtk-theme light
       '';
     };  

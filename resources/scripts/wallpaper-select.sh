@@ -17,6 +17,6 @@ fi
 
 echo "updating image and theme"
 
-swww img --transition-fps 144 --transition-type grow --transition-duration 2 --invert-y --transition-pos 0,0 "$1"
+awww img --transition-fps 144 --transition-type grow --transition-duration 2 --invert-y --transition-pos 0,0 "$1"
 
 hyprctl reload config-only # load new theme
