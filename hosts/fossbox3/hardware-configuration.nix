@@ -63,7 +63,7 @@
   #
   services.pulseaudio.enable = false; # Use Pipewire instead
 
-  security.rtkit.enable = true; # Enable RealtimeKit for audio purposes
+  # security.rtkit.enable = true; # Enable RealtimeKit for audio purposes
 
   services.pipewire = {
     enable = true;
@@ -71,7 +71,7 @@
     alsa.support32Bit = true;
     pulse.enable = true;
     # Uncomment the following line if you want to use JACK applications
-    # jack.enable = true;
+    jack.enable = true;
   };
 
   hardware.i2c.enable = true;

@@ -8,7 +8,10 @@
       extensions = with pkgs.vscode-extensions; [
         jnoortheen.nix-ide
         ms-vscode.live-server
-      ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [ ];
+        github.copilot
+        github.copilot-chat
+      ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [ 
+       ];
       userSettings = {
         nix = {
           "serverPath" = "nixd";

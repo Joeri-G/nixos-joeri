@@ -15,7 +15,6 @@ in
     dconf
     nwg-look
     glib
-    zuki-themes
     # custom scripts
     lidswitch-script
     switch-gtk-theme
@@ -45,9 +44,9 @@ in
 
   gtk = {
     enable = true;
-    theme = {
-      name = "Zukitre-dark";
-    };
+    # theme = {
+    #   name = "Sweet";
+    # };
   };
 
   # org.freedesktop.portal.Settings must return something for Librewolf to be able to detect the theme.

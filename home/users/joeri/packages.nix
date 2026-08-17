@@ -6,6 +6,7 @@
     signal-desktop
     zapzap # WhatsApp Client
     telegram-desktop
+    dissent # DC client
 
     # general tools
     fastfetch
@@ -28,6 +29,7 @@
 
     # vpn
     proton-vpn
+    eduvpn-client
 
     # office tools
     libreoffice

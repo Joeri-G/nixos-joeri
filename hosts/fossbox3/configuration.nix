@@ -63,6 +63,7 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+  networking.networkmanager.plugins = [ pkgs.networkmanager-openvpn ];
 
   # Set your time zone.
   time.timeZone = "Europe/Amsterdam";
@@ -108,6 +109,8 @@
   # };
 
   programs.fish.enable = true;
+
+  programs.nix-ld.enable = true;
 
   environment.systemPackages = with pkgs; [
     framework-tool
